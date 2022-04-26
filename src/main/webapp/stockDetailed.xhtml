@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <h1>Funds that have this stock:</h1>
+    <ol>
+        <ui:repeat value="#{stockDetailed.stock.funds}" var="fund">
+            <li>
+                <h:link value="#{fund.name}" />
+            </li>
+        </ui:repeat>
+    </ol>
+    <br></br>
+    <h:form>
+        <h:outputText value="Market cap: "/>
+        <h:inputText a:placeholder="enter the value" value="#{stockDetailed.marketCapToChange}" required="true" />
+        <h:commandButton value="update" action="#{stockDetailed.updateMarketCap()}">
+            <f:param name="stockId" value="#{stockDetailed.stock.id}" />
+        </h:commandButton>
+        <h:outputText value="Value was already modified by other user. If you want to override it - try again" rendered="#{param['error'] == 'optimistic-lock-exception'}" />
+    </h:form>
+    <h:link outcome="index" value="Back to Main page"/>
+</h:body>
+</html>

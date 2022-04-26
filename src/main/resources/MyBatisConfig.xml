@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="com.example.individ1.mybatis.model.Fund" alias="Fund"/>
+        <typeAlias type="com.example.individ1.mybatis.model.Stock" alias="Stock"/>
+        <typeAlias type="com.example.individ1.mybatis.model.Manager" alias="Manager"/>
+        <typeAlias type="com.example.individ1.mybatis.model.FundsStocks" alias="FundsStocks"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="MANAGED"/>
+            <dataSource type="JNDI">
+                <property name="data_source" value="DemoDataSource"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mybatis.xml/FundMapper.xml"/>
+        <mapper resource="mybatis.xml/StockMapper.xml"/>
+        <mapper resource="mybatis.xml/ManagerMapper.xml"/>
+        <mapper resource="mybatis.xml/FundsStocksMapper.xml"/>
+    </mappers>
+</configuration>

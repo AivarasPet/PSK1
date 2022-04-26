@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <h2>Stocks in a fund:</h2>
+    <ol>
+        <ui:repeat value="#{fundDetailedMyBatis.fund.stocks}" var="stock">
+            <li>
+                <h:link value="#{stock.name}" />
+            </li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+    <h:inputText a:placeholder="id" value="#{fundDetailedMyBatis.stockToAddId}" required="true" />
+    <h:commandButton value="Add stock to a fund"
+                     action="#{fundDetailedMyBatis.addStockToFund()}"
+    >
+        <f:param name="fundId" value="#{fundDetailedMyBatis.fund.id}"/>
+    </h:commandButton>
+</h:form>
+    <br></br>
+    <h2>Managers of a fund:</h2>
+    <ol>
+        <ui:repeat value="#{fundDetailedMyBatis.fund.managers}" var="manager">
+            <li>
+                <h:link value="#{manager.name}" />
+            </li>
+        </ui:repeat>
+    </ol>
+    <h:link outcome="main" value="Back to Main page"/>
+</h:body>
+</html>
