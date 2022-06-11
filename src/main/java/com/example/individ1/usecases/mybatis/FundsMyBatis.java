@@ -31,6 +31,7 @@ public class FundsMyBatis {
         this.allFunds = fundMapper.selectAll();
     }
 
+
     @Transactional
     public String createFund() {
         fundMapper.insert(fundToCreate);

@@ -1,5 +1,6 @@
 package com.example.individ1.usecases.mybatis;
 
+import com.example.individ1.interceptors.LoggedInvocation;
 import com.example.individ1.mybatis.dao.StockMapper;
 import com.example.individ1.mybatis.model.*;
 import lombok.Getter;
@@ -32,6 +33,7 @@ public class StocksMyBatis {
     }
 
     @Transactional
+    @LoggedInvocation
     public String createStock() {
         stockMapper.insert(stockToCreate);
         return "/myBatis/main?faces-redirect=true";

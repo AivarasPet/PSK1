@@ -13,6 +13,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.persistence.PersistenceException;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.Map;
@@ -55,12 +56,20 @@ public class FundDetailed implements Serializable {
 
     @Transactional
     public String addStockToFund() {
-        Stock toAdd = stocksDAO.findOne(Integer.parseInt(stockToAddId));
-        if(fund.getStocks().contains(toAdd) == false) {
-            fund.getStocks().add(toAdd);
-            fundsDAO.update(fund);
+        try {
+            Stock toAdd = stocksDAO.findOne(Integer.parseInt(stockToAddId));
+            if(toAdd == null) {
+                throw new RuntimeException("Stock does not exist");
+            }
+            if (fund.getStocks().contains(toAdd) == false ) {
+                fund.getStocks().add(toAdd);
+                fundsDAO.update(fund);
+            }
+            return "fundDetailed.xhtml?fundId=" + fund.getId();
         }
-        return "fundDetailed.xhtml?fundId=" + fund.getId();
+        catch (Exception ex) {
+            return "error.xhtml";
+        }
     }
     @Transactional
     public void addManagerToFund() {

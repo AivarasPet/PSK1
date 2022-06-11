@@ -1,6 +1,7 @@
 package com.example.individ1.usecases;
 
 import com.example.individ1.entities.Fund;
+import com.example.individ1.interceptors.LoggedInvocation;
 import com.example.individ1.persistence.FundsDAO;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,6 +30,7 @@ public class Funds {
     }
 
     @Transactional
+    @LoggedInvocation
     public void createFund(){
         this.fundsDAO.persist(fundToCreate);
     }

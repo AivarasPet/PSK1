@@ -72,11 +72,16 @@ public class FundDetailedMyBatis {
 
     @Transactional
     public String addStockToFund() {
-        FundsStocks fundsStocks = new FundsStocks();
-        fundsStocks.setFundId(fund.getId());
-        fundsStocks.setStockId(Integer.parseInt(stockToAddId));
-        fundsStocksMapper.insert(fundsStocks);
-        return "/myBatis/fundDetailed.xhtml?faces-redirect=true&fundId=" + fund.getId();
+        try {
+            FundsStocks fundsStocks = new FundsStocks();
+            fundsStocks.setFundId(fund.getId());
+            fundsStocks.setStockId(Integer.parseInt(stockToAddId));
+            fundsStocksMapper.insert(fundsStocks);
+            return "/myBatis/fundDetailed.xhtml?faces-redirect=true&fundId=" + fund.getId();
+        }
+        catch (Exception ex) {
+            return "/error.xhtml";
+        }
     }
 
     /*

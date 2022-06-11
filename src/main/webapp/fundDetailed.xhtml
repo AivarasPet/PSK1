@@ -17,8 +17,7 @@
     <h:form>
         <h:inputText a:placeholder="id" value="#{fundDetailed.stockToAddId}" required="true" />
         <h:commandButton value="Add stock to a fund"
-                         actionListener="#{fundDetailed.addStockToFund()}"
-                         action="fundDetailed.xhtml?fundId=1"
+                         action="#{fundDetailed.addStockToFund()}"
         >
             <f:param name="fundId" value="#{fundDetailed.fund.id}"/>
         </h:commandButton>

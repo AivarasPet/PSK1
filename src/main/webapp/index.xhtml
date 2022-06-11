@@ -8,6 +8,7 @@
 <f:view>
     <h:body>
     <h1>Persistence implementation</h1>
+    <h1>#{greetingComponent.greeting()}</h1>
     <h2>All funds:</h2>
     <table style="border: 1px solid black;">
         <tbody>
@@ -57,6 +58,12 @@
     <h:form>
         <h:inputText value="#{managers.managerToAdd.name}" required="true" />
         <h:commandButton value="Add new manager" actionListener="#{managers.createManager()}" action="index?faces-redirect=true"/>
+    </h:form>
+    <br/>
+    <h:form>
+        Text: #{idCardGeneration.generatedId}
+        <h:inputText value="#{idCardGeneration.inputForGeneration}" required="true" />
+        <h:commandButton value = "Click Me!" actionListener="#{idCardGeneration.generateCardId()}" />
     </h:form>
     <br/>
     <h:link outcome="myBatis/main" value="MyBatis implementation"/>

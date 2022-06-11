@@ -29,6 +29,10 @@ public class Stock implements Serializable {
     @Getter @Setter
     private String marketCap;
 
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
+
     @ManyToMany
     @JoinTable(
             name = "funds_stocks",
